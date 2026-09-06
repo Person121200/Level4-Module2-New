@@ -14,6 +14,7 @@ public class ScannerDemo {
         /*
          * 1. Create an object of the Scanner class.
          * 
+         * 
          * Note: You will need to pass System.in to the constructor(no quotes).
          * 
          * You might notice this looks similar to System.out which you use for
@@ -24,8 +25,12 @@ public class ScannerDemo {
          * Eclipse's console. This may change depending on the environment where
          * are running your program or the input/output stream you are using.
          */
-
-        
+    	Scanner scan = new Scanner(System.in);  
+    	System.out.println("what's your name");
+    	String answer = scan.nextLine();
+    	System.out.print("hello " + answer);
+    	System.out.println("what's your age");
+    	String age = scan.nextLine()
         
         /*
          * 2. Use a syso to ask the user for their name and then use the Scanner
