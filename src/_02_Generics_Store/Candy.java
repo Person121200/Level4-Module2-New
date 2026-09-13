@@ -19,4 +19,9 @@ public class Candy extends Food{
 		// TODO Auto-generated method stub
 		return new JLabel(loadImage(this.item));
 	}
+
+	@Override
+	public int price() {
+		return 2;
+	}
 }

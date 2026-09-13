@@ -21,4 +21,6 @@ public abstract class Food {
             return null;
         }
     }
+    public abstract int price();
+
 }

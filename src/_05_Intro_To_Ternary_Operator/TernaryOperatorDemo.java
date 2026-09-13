@@ -1,5 +1,7 @@
 package _05_Intro_To_Ternary_Operator;
 
+import java.util.Scanner;
+
 public class TernaryOperatorDemo {
 
     /*
@@ -25,8 +27,17 @@ public class TernaryOperatorDemo {
          */
 
         x = x == 5 ? x * 5 : x / 5;
-
+        
+        
+        Scanner scan = new Scanner(System.in);
+        String input;
         System.out.println(x);
+        do {
+            System.out.println("What season is it? ");
+            input = scan.nextLine();
+            input = input.equals("duck season")? "FIRE!" : "rabbit season";
+            System.out.println(input);
+        }while(!input.equals("FIRE!"));
 
         /*
          * 2. Ask the user what season it is and saves their input through use

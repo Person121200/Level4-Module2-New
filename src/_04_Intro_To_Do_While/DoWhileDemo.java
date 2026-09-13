@@ -17,6 +17,16 @@ public class DoWhileDemo {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
+        int x = 10;
+        
+        do {
+        	System.out.print("hello");
+        	
+        	x--;
+        	
+        } while (x > 5);
+        
+        
 
         /*
          * It is also useful for avoiding code repetition whenever you must deal
@@ -41,23 +51,32 @@ public class DoWhileDemo {
 
         Random rand = new Random();
 
-        String again;
+        String again = "";
+        
+        do{
+            
 
-        while (again.equals("y")) {
-            int flip = rand.nextInt(2);
-            String coin;
-
-            if (flip == 1)
-                coin = "HEADS";
-            else
-                coin = "TAILS";
-
-            System.out.println("You flip a coin and it is... " + coin);
-
-            System.out.print("Would you like to flip again (y/n)? ");
+            System.out.print("Would you like to flip (y/n)? ");
             again = scan.next();
-        }
+            	int flip = rand.nextInt(2);
+                String coin;
 
+                if (flip == 1)
+                    coin = "HEADS";
+                else
+                    coin = "TAILS";
+                System.out.println("You flip a coin and it is... " + coin);
+            
+
+
+
+        
+
+        
+        }while (again.equals("y"));
+        
+        
+ 
         scan.close();
     }
 

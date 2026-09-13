@@ -20,4 +20,5 @@ public abstract class NonFood {
 			return null;
 		}
 	}
+	public abstract int price();
 }

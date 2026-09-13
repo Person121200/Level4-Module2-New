@@ -19,4 +19,10 @@ public class Clothing extends NonFood{
 		// TODO Auto-generated method stub
 		return new JLabel(loadImage(this.item));
 	}
+
+	@Override
+	public int price() {
+		// TODO Auto-generated method stub
+		return 15;
+	}
 }

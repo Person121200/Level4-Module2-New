@@ -26,12 +26,20 @@ public class ScannerDemo {
          * are running your program or the input/output stream you are using.
          */
     	Scanner scan = new Scanner(System.in);  
-    	System.out.println("what's your name");
+    	String Bool = "";
+    	System.out.println("what's your name ");
     	String answer = scan.nextLine();
-    	System.out.print("hello " + answer);
-    	System.out.println("what's your age");
-    	String age = scan.nextLine()
-        
+    	System.out.println("hello " + answer + "what's your age ");
+    	int age = scan.nextInt();
+    	System.out.println("do you play games? (enter true or false)");
+    	Boolean game = scan.nextBoolean();
+    	if(game == true) {
+    		Bool = "play";
+    	}
+    	else {
+    		Bool = "do not";
+    	}
+    	System.out.println("Hi, " + answer + " you are " + age + " years old and " + Bool + " games!");
         /*
          * 2. Use a syso to ask the user for their name and then use the Scanner
          * created in step 1 to take in the user's name as a String.

@@ -1,5 +1,15 @@
 package _06_Console_Store;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import _02_Generics_Store.Cart;
+import _02_Generics_Store.Cereal;
+import _02_Generics_Store.Food;
+
 public class ConsoleStore {
 
     /*
@@ -35,9 +45,21 @@ public class ConsoleStore {
      * print out a receipt showing their name, the individual prices of the
      * items and their total.
      */
+	
 
     public static void main(String[] args) {
+    	ArrayList<Food> foodCart = new ArrayList<>();
+    	Scanner scan = new Scanner(System.in);
+    	int money = 100;
+    	
+    	
+    	System.out.println("Welcome to the online shop?");
+    	System.out.println("You can view cart, add an item, remove an item, or check out");
+    	String input = scan.nextLine();
+    	input = input.equals("view cart") ? foodCart.toString() : (input.equals("add item") ? "redirecting to market" : null) : input.equals("remove item") ? ;
+    	System.out.println("Current items in market: Candy 2$, Cereal 8$, Clothing 15$, Toys 10$");
 
     }
+
 
 }
