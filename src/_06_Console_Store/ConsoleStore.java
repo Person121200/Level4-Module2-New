@@ -6,9 +6,13 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import _02_Generics_Store.Candy;
 import _02_Generics_Store.Cart;
 import _02_Generics_Store.Cereal;
+import _02_Generics_Store.Clothing;
 import _02_Generics_Store.Food;
+import _02_Generics_Store.NonFood;
+import _02_Generics_Store.Toy;
 
 public class ConsoleStore {
 
@@ -45,20 +49,78 @@ public class ConsoleStore {
      * print out a receipt showing their name, the individual prices of the
      * items and their total.
      */
+	Scanner scan = new Scanner(System.in);
+   	ArrayList<Food> foodCart = new ArrayList<>();
+   	ArrayList<NonFood> nonFoodCart = new ArrayList<>();
+	int money = 100;
+	String remove;
+
+	ConsoleStore(){
+    	
+        	System.out.println("Welcome to the online shop?");
+        	while(0<1) {
+            	System.out.println("You can view cart, add an item, remove an item, or check out");
+            	String input = scan.nextLine();
+            	if(input.equalsIgnoreCase("View Cart")) {
+            		System.out.println("You currently have: " + foodCart.toString() + " " + nonFoodCart.toString() + " in your cart.");
+            	}
+            	else if(input.equalsIgnoreCase("Add Item")) {
+            		addItem();
+            	}
+            	else if(input.equalsIgnoreCase("Remove Item")) {
+            		removeItem();
+            	}
+        	}
+
+    	}
+
 	
-
-    public static void main(String[] args) {
-    	ArrayList<Food> foodCart = new ArrayList<>();
-    	Scanner scan = new Scanner(System.in);
-    	int money = 100;
-    	
-    	
-    	System.out.println("Welcome to the online shop?");
-    	System.out.println("You can view cart, add an item, remove an item, or check out");
-    	String input = scan.nextLine();
-    	input = input.equals("view cart") ? foodCart.toString() : (input.equals("add item") ? "redirecting to market" : null) : input.equals("remove item") ? ;
+	    public static void main(String[] args) {
+	    	new ConsoleStore();
+	    	
+	    }
+    public void addItem() {
+    	String choice = "";
     	System.out.println("Current items in market: Candy 2$, Cereal 8$, Clothing 15$, Toys 10$");
+    	choice = scan.nextLine();
+    	if(choice.equalsIgnoreCase("candy")) {
+    		foodCart.add(new Candy());
+    		money-=foodCart.get(foodCart.size()-1).price();
+    	}
+    	else if(choice.equalsIgnoreCase("Cereal")) {
+    		foodCart.add(new Cereal());
+    		money-=foodCart.get(foodCart.size()-1).price();
 
+    	}
+    	else if(choice.equalsIgnoreCase("Clothing")) {
+    		nonFoodCart.add(new Clothing());
+    		money-=nonFoodCart.get(nonFoodCart.size()-1).price();
+
+    	}
+    	else if(choice.equalsIgnoreCase("Toys")) {
+    		nonFoodCart.add(new Toy());
+    		money-=nonFoodCart.get(nonFoodCart.size()-1).price();
+
+    	}
+    	
+    	
+    	
+    }
+    public void removeItem() {
+    	remove = "";
+		System.out.println("You currently have: " + foodCart.toString() + " " + nonFoodCart.toString() + " in your cart.");
+		remove= scan.nextLine();
+		for(int i = 0; i<foodCart.size(); i++) {
+			if(foodCart.get(i).toString().equalsIgnoreCase(remove)) {
+				foodCart.remove(i);
+			}
+		}
+		for(int i = 0; i<nonFoodCart.size(); i++) {
+			if(nonFoodCart.get(i).toString().equalsIgnoreCase(remove)) {
+				nonFoodCart.remove(i);
+			}
+		}
+    	
     }
 
 

@@ -25,4 +25,10 @@ public class Clothing extends NonFood{
 		// TODO Auto-generated method stub
 		return 15;
 	}
+
+	@Override
+	public String name() {
+		// TODO Auto-generated method stub
+		return "clothing";
+	}
 }

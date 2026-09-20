@@ -21,6 +21,7 @@ public abstract class Food {
             return null;
         }
     }
+    public abstract String name();
     public abstract int price();
 
 }

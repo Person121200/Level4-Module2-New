@@ -24,4 +24,9 @@ public class Candy extends Food{
 	public int price() {
 		return 2;
 	}
+
+	@Override
+	public String name() {
+		return "candy";
+	}
 }

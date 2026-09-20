@@ -25,4 +25,10 @@ public class Toy extends NonFood {
 		// TODO Auto-generated method stub
 		return 10;
 	}
+
+	@Override
+	public String name() {
+		// TODO Auto-generated method stub
+		return "toy";
+	}
 }

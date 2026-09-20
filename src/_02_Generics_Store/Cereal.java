@@ -25,4 +25,10 @@ public class Cereal extends Food{
 		// TODO Auto-generated method stub
 		return 7;
 	}
+
+	@Override
+	public String name() {
+		// TODO Auto-generated method stub
+		return "cereal";
+	}
 }

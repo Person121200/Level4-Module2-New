@@ -21,4 +21,5 @@ public abstract class NonFood {
 		}
 	}
 	public abstract int price();
+	public abstract String name();
 }
