@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import _02_Generics_Store.Candy;
 import _02_Generics_Store.Cart;
@@ -50,25 +51,36 @@ public class ConsoleStore {
      * items and their total.
      */
 	Scanner scan = new Scanner(System.in);
+
    	ArrayList<Food> foodCart = new ArrayList<>();
    	ArrayList<NonFood> nonFoodCart = new ArrayList<>();
-	int money = 100;
+   	ArrayList<String> total = new ArrayList<>();
+	int money = 50;
 	String remove;
+	String name = "";
+	boolean checkedOut = false;
 
 	ConsoleStore(){
-    	
-        	System.out.println("Welcome to the online shop?");
-        	while(0<1) {
-            	System.out.println("You can view cart, add an item, remove an item, or check out");
+		
+        	System.out.println("Welcome to the online shop!");
+        	System.out.println("What is your full name?");
+        	name = scan.nextLine();
+        	while(checkedOut == false) {
+            	System.out.println(name + ", you can view cart, add an item, remove an item, or check out" + " ;your balance is " + money);
             	String input = scan.nextLine();
             	if(input.equalsIgnoreCase("View Cart")) {
-            		System.out.println("You currently have: " + foodCart.toString() + " " + nonFoodCart.toString() + " in your cart.");
+            		toName();
+            		System.out.println(name + ", you currently have: " + total + " in your cart.");
+            		total.clear();
             	}
             	else if(input.equalsIgnoreCase("Add Item")) {
             		addItem();
             	}
             	else if(input.equalsIgnoreCase("Remove Item")) {
             		removeItem();
+            	}
+            	else if(input.equalsIgnoreCase("Check Out")) {
+            		CheckOut();
             	}
         	}
 
@@ -79,6 +91,44 @@ public class ConsoleStore {
 	    	new ConsoleStore();
 	    	
 	    }
+	    
+	    public void toName() {
+	    	for(int i = 0; i<foodCart.size(); i++) {
+	    		
+	    		total.add(foodCart.get(i).name());
+	    	}
+	    	for(int i = 0; i<nonFoodCart.size(); i++) {
+	    		total.add(nonFoodCart.get(i).name());
+	    	}
+	    	
+	    }
+	public void CheckOut() {
+		toName();
+		String check = "";
+		System.out.println("Checking Out...");
+		System.out.println("You have a total of " + total.size() + " items in your cart.");
+		System.out.println("Current Items In Cart: " + total);
+		int temp = 50-money;
+		System.out.println("Your balance is: " + money+ "$" + "and you spent " + temp + "$");
+		System.out.println("Would you like to check out? (y/n)");
+		check = scan.nextLine();
+		if(check.equalsIgnoreCase("y")) {
+			if(money>=0) {
+				checkedOut = true;
+				PrintReceipt();
+				ShowCart();
+			}
+			else {
+				System.out.println("You have insufficient funds. Please remove some items");
+				total.clear();
+				removeItem();
+			}
+		}
+		else if(check.equals("n")){
+			System.out.println("returning to homescreen");
+		}
+		
+	}
     public void addItem() {
     	String choice = "";
     	System.out.println("Current items in market: Candy 2$, Cereal 8$, Clothing 15$, Toys 10$");
@@ -107,19 +157,72 @@ public class ConsoleStore {
     	
     }
     public void removeItem() {
+    	toName();
     	remove = "";
-		System.out.println("You currently have: " + foodCart.toString() + " " + nonFoodCart.toString() + " in your cart.");
+		System.out.println("You currently have: " + total + " in your cart. What would you like to remove? (type anything to leave)");
 		remove= scan.nextLine();
-		for(int i = 0; i<foodCart.size(); i++) {
-			if(foodCart.get(i).toString().equalsIgnoreCase(remove)) {
-				foodCart.remove(i);
+		for(int i = 0; i<total.size(); i++) {
+			if(total.get(i).equalsIgnoreCase(remove)) {
+				for(int j = 0; j<foodCart.size(); j++) {
+					if(foodCart.get(j).name().equalsIgnoreCase(remove)){
+						money+=foodCart.get(j).price();
+						foodCart.remove(j);
+					}
+				}
+				for(int j = 0; j<nonFoodCart.size(); j++) {
+					if(nonFoodCart.get(j).name().equalsIgnoreCase(remove)) {
+						money+=nonFoodCart.get(j).price();
+						nonFoodCart.remove(j);
+
+					}
+				}
 			}
 		}
-		for(int i = 0; i<nonFoodCart.size(); i++) {
-			if(nonFoodCart.get(i).toString().equalsIgnoreCase(remove)) {
-				nonFoodCart.remove(i);
-			}
-		}
+
+		total.clear();
+    	
+    }
+    public void ShowCart() {
+    	JFrame frame = new JFrame("Cart");
+    	JPanel panel = new JPanel();
+    	frame.add(panel);
+    	frame.setVisible(true);
+    	for(int i = 0; i<foodCart.size(); i++) {
+    		panel.add(foodCart.get(i).getFood());
+    	}
+    	for(int i =0; i<nonFoodCart.size(); i++) {
+    		panel.add(nonFoodCart.get(i).getNonFood());
+    	}
+		frame.pack();
+
+    	
+    }
+    public void PrintReceipt() {
+    	String temp = "";
+    	toName();
+    	for(int i = 0; i<8; i++) {
+    		System.out.println(" ... ");
+    	}
+    	System.out.println("Receipt for Online Shop");
+    	System.out.println("Billed to " + name);
+    	for(int i = 0; i<total.size(); i++) {
+    		temp += total.get(i);
+    	}
+    	System.out.println("List of all purchased items: " + temp);
+    	System.out.println("");
+    	System.out.println("Food Items:");
+    	System.out.println(" ");
+    	for(int i = 0; i<foodCart.size(); i++) {
+    		System.out.println(foodCart.get(i).name() + "          " + foodCart.get(i).price() + " $");
+    	}
+    	System.out.println(" ");
+
+    	System.out.println("Non Food Items:");
+    	System.out.println(" ");
+
+    	for(int i = 0; i<nonFoodCart.size(); i++) {
+    		System.out.println(nonFoodCart.get(i).name() + "          " + nonFoodCart.get(i).price() + " $");
+    	}
     	
     }
 
